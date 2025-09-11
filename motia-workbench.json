@@ -1,0 +1,60 @@
+[
+  {
+    "id": "basic-tutorial",
+    "config": {
+      "steps\\state-audit-cron.step.ts": {
+        "x": 225,
+        "y": 0
+      },
+      "steps\\process-food-order.step.ts": {
+        "x": 225,
+        "y": 219
+      },
+      "steps\\notification.step.ts": {
+        "x": 575,
+        "y": 141
+      },
+      "steps\\api.step.ts": {
+        "x": 0,
+        "y": 205
+      }
+    }
+  },
+  {
+    "id": "content-creation-pipeline",
+    "config": {
+      "steps\\topic-research.step.py": {
+        "x": 353,
+        "y": 287
+      },
+      "steps\\strategy-optimizer.step.ts": {
+        "x": 0,
+        "y": 0
+      },
+      "steps\\review.step.ts": {
+        "x": 1153,
+        "y": 263
+      },
+      "steps\\quality-assurance.step.ts": {
+        "x": 803,
+        "y": 253
+      },
+      "steps\\performance-tracker.step.py": {
+        "x": 1839,
+        "y": 253
+      },
+      "steps\\multi-platform-publisher.step.ts": {
+        "x": 1489,
+        "y": 253
+      },
+      "steps\\content-request.step.ts": {
+        "x": 0,
+        "y": 219
+      },
+      "steps\\ai-content-generator.step.py": {
+        "x": 555,
+        "y": 289
+      }
+    }
+  }
+]

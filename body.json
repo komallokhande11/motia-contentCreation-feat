@@ -1,0 +1,6 @@
+{
+  "topic": "AI agents for content marketing",
+  "targetPlatforms": ["blog","twitter","linkedin","newsletter"],
+  "urgency": "normal",
+  "audience": { "persona": "B2B marketing lead", "language": "en", "readingLevel": "intermediate" }
+}
