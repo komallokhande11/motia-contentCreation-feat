@@ -14,14 +14,10 @@ declare module 'motia' {
   interface Handlers {
     'topic-research': EventHandler<never, { topic: 'content.research.completed'; data: never }>
     'strategy-optimizer': CronHandler<never>
-    'StateAuditJob': CronHandler<{ topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
-    'quality-assurance': EventHandler<{ platformContents: { blog?: string; twitter?: string[]; linkedin?: string; newsletter?: string }; context: { topic: string; audience: { persona: string; language: string; readingLevel: string } } }, never>
-    'ProcessFoodOrder': EventHandler<{ email: string; quantity: number; petId: number }, { topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
+    'quality-assurance': EventHandler<{ platformContents: { blog?: string; twitter?: string[]; linkedin?: string; newsletter?: string }; context: { topic: string; audience: { persona: string; language?: string; readingLevel?: 'beginner' | 'intermediate' | 'expert' } } }, never>
     'performance-tracker': EventHandler<never, never>
-    'Notification': EventHandler<{ templateId: string; email: string; templateData: Record<string, unknown> }, never>
     'multi-platform-publisher': EventHandler<{ contents: { blog?: string; twitter?: string[]; linkedin?: string; newsletter?: string }; schedule?: { when?: string }; metadata: { topic: string; audience: { persona: string; language: string } } }, { topic: 'content.published'; data: never }>
     'content-request': ApiRouteHandler<{ topic?: string; sourceUrl?: string; targetPlatforms: 'blog' | 'twitter' | 'linkedin' | 'newsletter'[]; urgency?: 'low' | 'normal' | 'high'; audience: { persona: string; language?: string; readingLevel?: 'beginner' | 'intermediate' | 'expert' } }, unknown, { topic: 'content.request.received'; data: never }>
-    'ApiTrigger': ApiRouteHandler<{ pet: { name: string; photoUrl: string }; foodOrder?: { id: string; quantity: number } }, ApiResponse<200, { id: number; name: string; photoUrl: string }>, { topic: 'process-food-order'; data: { email: string; quantity: number; petId: number } }>
-    'ai-content-generator': EventHandler<never, { topic: 'content.generation.completed'; data: { platformContents: { blog?: string; twitter?: string[]; linkedin?: string; newsletter?: string }; context: { topic: string; audience: { persona: string; language: string; readingLevel: string } } } }>
+    'ai-content-generator': EventHandler<never, { topic: 'content.generation.completed'; data: { platformContents: { blog?: string; twitter?: string[]; linkedin?: string; newsletter?: string }; context: { topic: string; audience: { persona: string; language?: string; readingLevel?: 'beginner' | 'intermediate' | 'expert' } } } }>
   }
 }

@@ -1,4 +1,5 @@
 import { type CronConfig, type CronHandler } from 'motia';
+import { type StrategyUpdateCompletedData, StrategySuggestionsSchema } from '../types/shared';
 
 export const config: CronConfig = {
 	type: 'cron',
@@ -12,12 +13,15 @@ export const config: CronConfig = {
 export const handler: CronHandler = async ({ emit, logger, state, traceId }) => {
 	// pull aggregated performance insights if present
 	const insights = await state.get(traceId, 'performance.insights');
-	const suggestions = {
+	
+	const suggestions = StrategySuggestionsSchema.parse({
 		topics: ['AI policy updates', 'LLM evaluation best practices'],
 		recommendations: ['Post threads at 9 AM UTC', 'Repurpose blog into LinkedIn carousel']
-	};
-	await emit({ topic: 'strategy.update.completed', data: { suggestions, insights } });
-	logger.info('Strategy update completed');
+	});
+	
+	const eventData: StrategyUpdateCompletedData = { suggestions, insights };
+	await (emit as any)({ topic: 'strategy.update.completed', data: eventData });
+	logger.info('Strategy update completed', { traceId, topicsCount: suggestions.topics.length });
 };
 
 
