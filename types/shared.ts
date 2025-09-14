@@ -89,6 +89,7 @@ export interface ContentQACompletedData {
 		topic: string;
 		audience: Audience;
 	};
+	platformContents: PlatformContent;
 	traceId: string;
 }
 

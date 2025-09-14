@@ -7,7 +7,15 @@ import {
 import { z } from 'zod';
 
 const InputSchema = z.object({
-	contents: PlatformContentSchema,
+	platformContents: PlatformContentSchema,
+	context: z.object({
+		topic: z.string(),
+		audience: z.object({
+			persona: z.string(),
+			language: z.string(),
+			readingLevel: z.string().optional()
+		})
+	}).optional(),
 	schedule: z.object({ when: z.string().datetime().optional() }).optional(),
 	metadata: z.object({ 
 		topic: z.string(), 
@@ -15,7 +23,7 @@ const InputSchema = z.object({
 			persona: z.string(), 
 			language: z.string() 
 		}) 
-	})
+	}).optional()
 });
 
 export const config: EventConfig = {
@@ -54,22 +62,25 @@ export const handler = async (input: z.infer<typeof InputSchema>, { emit, logger
 		const scheduled = input.schedule?.when ? new Date(input.schedule.when).toISOString() : new Date().toISOString();
 		
 		const [wp, li, tw, md] = await Promise.all([
-			publishWordPress(input.contents.blog),
-			publishLinkedIn(input.contents.linkedin),
-			publishTwitter(input.contents.twitter),
-			publishMedium(input.contents.blog)
+			publishWordPress(input.platformContents.blog),
+			publishLinkedIn(input.platformContents.linkedin),
+			publishTwitter(input.platformContents.twitter),
+			publishMedium(input.platformContents.blog)
 		]);
 
 		const results: PublishingResult = { wp, li, tw, md };
 		const eventData: ContentPublishedData = { 
 			scheduledAt: scheduled, 
 			results, 
-			metadata: input.metadata, 
+			metadata: input.metadata || { 
+				topic: input.context?.topic || 'Unknown', 
+				audience: input.context?.audience || { persona: 'Unknown', language: 'en' } 
+			}, 
 			traceId 
 		};
 
 		await (emit as any)({ topic: 'content.published', data: eventData });
-		logger.info('Content published across platforms', { traceId, platforms: Object.keys(input.contents) });
+		logger.info('Content published across platforms', { traceId, platforms: Object.keys(input.platformContents) });
 	} catch (error: unknown) {
 		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 		logger.error('Publishing failed', { traceId, error: errorMessage });

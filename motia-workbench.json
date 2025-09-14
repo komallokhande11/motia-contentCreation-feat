@@ -1,26 +1,5 @@
 [
   {
-    "id": "basic-tutorial",
-    "config": {
-      "steps\\state-audit-cron.step.ts": {
-        "x": 225,
-        "y": 0
-      },
-      "steps\\process-food-order.step.ts": {
-        "x": 225,
-        "y": 219
-      },
-      "steps\\notification.step.ts": {
-        "x": 575,
-        "y": 141
-      },
-      "steps\\api.step.ts": {
-        "x": 0,
-        "y": 205
-      }
-    }
-  },
-  {
     "id": "content-creation-pipeline",
     "config": {
       "steps\\topic-research.step.py": {

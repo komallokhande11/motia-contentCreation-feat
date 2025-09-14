@@ -34,6 +34,6 @@ async def handler(input_data: Dict[str, Any], ctx: Any) -> None:
 	await ctx.state.set(trace_id, "performance.metrics", metrics)
 	await ctx.state.set(trace_id, "performance.insights", insights)
 	await ctx.emit({"topic": "performance.analysis.completed", "data": {"metrics": metrics, "insights": insights}})
-	ctx.logger.info("Performance analysis completed", details={"trace_id": trace_id})
+	ctx.logger.info("Performance analysis completed", {"trace_id": trace_id})
 
 

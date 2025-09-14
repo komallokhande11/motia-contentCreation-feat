@@ -82,7 +82,12 @@ export const handler = async (input: z.infer<typeof InputSchema>, { emit, logger
 			return;
 		}
 
-		const completedData: ContentQACompletedData = { results, context: input.context, traceId };
+		const completedData: ContentQACompletedData = { 
+			results, 
+			context: input.context, 
+			traceId,
+			platformContents: input.platformContents
+		};
 		await emit({ topic: 'content.qa.completed', data: completedData } as any);
 		logger.info('QA completed', { traceId });
 	} catch (error: unknown) {
