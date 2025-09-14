@@ -1,4 +1,4 @@
-import { type EventConfig, type StepHandler } from 'motia';
+import { type EventConfig, type Handlers } from 'motia';
 import { 
 	PlatformContentSchema, 
 	type ContentPublishedData,
@@ -56,7 +56,7 @@ async function publishMedium(content?: string): Promise<{ id: string | null }> {
 	return { id: 'md_' + Date.now() }; 
 }
 
-export const handler = async (input: z.infer<typeof InputSchema>, { emit, logger, traceId }: any) => {
+export const handler: Handlers['multi-platform-publisher'] = async (input: z.infer<typeof InputSchema>, { emit, logger, traceId }: any) => {
 	try {
 		// naive scheduling placeholder; real scheduling would enqueue jobs at desired time
 		const scheduled = input.schedule?.when ? new Date(input.schedule.when).toISOString() : new Date().toISOString();

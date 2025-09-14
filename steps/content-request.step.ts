@@ -1,4 +1,4 @@
-import { type ApiRouteConfig, type ApiRouteHandler } from 'motia';
+import { type ApiRouteConfig, type Handlers } from 'motia';
 import { ContentRequestSchema, type ContentRequestReceivedData } from '../types/shared';
 
 export const config: ApiRouteConfig = {
@@ -12,7 +12,7 @@ export const config: ApiRouteConfig = {
 	bodySchema: ContentRequestSchema
 };
 
-export const handler: ApiRouteHandler = async (req, { emit, logger, traceId, state }) => {
+export const handler: Handlers['content-request'] = async (req, { emit, logger, traceId, state }) => {
 	try {
 		const body = ContentRequestSchema.parse(req.body);
 		// Persist the initial request for auditing and downstream usage

@@ -14,7 +14,11 @@ const InputSchema = z.object({
 	platformContents: PlatformContentSchema.refine(v => Object.keys(v).length > 0, 'At least one platform content is required'),
 	context: z.object({
 		topic: z.string(),
-		audience: AudienceSchema
+		audience: AudienceSchema.transform(data => ({
+			...data,
+			language: data.language || 'en',
+			readingLevel: data.readingLevel || 'intermediate'
+		}))
 	})
 });
 

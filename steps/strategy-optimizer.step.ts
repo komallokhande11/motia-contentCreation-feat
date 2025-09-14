@@ -1,4 +1,4 @@
-import { type CronConfig, type CronHandler } from 'motia';
+import { type CronConfig, type Handlers } from 'motia';
 import { type StrategyUpdateCompletedData, StrategySuggestionsSchema } from '../types/shared';
 
 export const config: CronConfig = {
@@ -10,7 +10,7 @@ export const config: CronConfig = {
 	flows: ['content-creation-pipeline']
 };
 
-export const handler: CronHandler = async ({ emit, logger, state, traceId }) => {
+export const handler: Handlers['strategy-optimizer'] = async ({ emit, logger, state, traceId }) => {
 	// pull aggregated performance insights if present
 	const insights = await state.get(traceId, 'performance.insights');
 	
