@@ -30,7 +30,7 @@ export const config: EventConfig = {
 	type: 'event',
 	name: 'multi-platform-publisher',
 	description: 'Publishes content to WordPress, LinkedIn, Twitter, Medium with scheduling',
-	subscribes: ['content.approved'],
+	subscribes: ['content.qa.completed'],
 	emits: ['content.published'],
 	input: InputSchema,
 	flows: ['content-creation-pipeline']

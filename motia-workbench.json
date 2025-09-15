@@ -10,28 +10,24 @@
         "x": 0,
         "y": 0
       },
-      "steps\\review.step.ts": {
-        "x": 1153,
-        "y": 263
-      },
       "steps\\quality-assurance.step.ts": {
-        "x": 803,
-        "y": 253
+        "x": 902,
+        "y": 251
       },
       "steps\\performance-tracker.step.py": {
         "x": 1839,
         "y": 253
       },
       "steps\\multi-platform-publisher.step.ts": {
-        "x": 1490,
-        "y": 253
+        "x": 1403,
+        "y": 247
       },
       "steps\\content-request.step.ts": {
         "x": 0,
         "y": 219
       },
       "steps\\ai-content-generator.step.py": {
-        "x": 555,
+        "x": 604,
         "y": 289
       }
     }
